@@ -1,0 +1,22 @@
+class Solution {
+    public List<List<Integer>> linationSum3(int k, int target) {
+        List<List<Integer>> res=new ArrayList<>();
+        LinkedList<Integer> l= new LinkedList<>();
+        this.backtrack(target,k,l,1,res);
+        return res;
+    }
+    protected void backtrack(int remain,int k,LinkedList<Integer> l,int start,List<List<Integer>> res)
+    {
+        if(remain==0 && l.size()==k){
+            res.add(new ArrayList<Integer>(l));
+            return;
+        }
+        else if(remain<0 || l.size()==k) return;
+
+        for(int i=start;i<=9;i++){
+            l.add(i);
+            this.backtrack(remain-i,k,l,i+1,res);
+            l.removeLast();
+        }
+    }
+}
