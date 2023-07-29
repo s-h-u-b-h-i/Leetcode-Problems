@@ -116,26 +116,17 @@ class Tree
 {
     public static float findMedian(Node root)
     {
-        ArrayList<Integer> a = new ArrayList<>();
-        inorder(root, a);
-        int i = a.size();
-
-        if (i % 2 != 0) {
-            return a.get(i / 2);
-        } else {
-            int mid1 = a.get(i / 2);
-            int mid2 = a.get((i / 2) - 1);
-            return (float) (mid1 + mid2) / 2;
-        }
+        ArrayList<Integer> a=new ArrayList<>();
+        inorder(a,root);
+        if(a.size()%2!=0) return (float)a.get(a.size()/2);
+        int m1=a.get(a.size()/2);
+        int m2=a.get((a.size()-1)/2);
+        return (float) (m1+m2)/2;
     }
-
-    static void inorder(Node root, ArrayList<Integer> a) {
-        if (root == null) {
-            return;
-        }
-
-        inorder(root.left, a);
+    static void inorder(ArrayList<Integer> a,Node root){
+        if(root==null) return;
+        inorder(a,root.left);
         a.add(root.data);
-        inorder(root.right, a);
+        inorder(a,root.right);
     }
 }
